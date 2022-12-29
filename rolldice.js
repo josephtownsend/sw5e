@@ -1,72 +1,88 @@
-/*function createElement(id) {
-  const para = document.createElement("p");
-  const node = document.createTextNode(id);
-  para.appendChild(node);
 
-  const element = document.getElementById("diceRollResult");
-  element.appendChild(para);  
-};*/
+const d4Button = document.getElementById("d4");
+const d6Button = document.getElementById("d6");
+const d8Button = document.getElementById("d8");
+const d10Button = document.getElementById("d10");
+const d12Button = document.getElementById("d12");
+const d20Button = document.getElementById("d20");
+const d100Button = document.getElementById("d100");
 
-let spinach = document.getElementById('numberOfDice');
-let potato = document.getElementById('diceRollResult');
-let brocolli = 1
-let turnip = "turnip"
+ 
+function rollDice (numberOfDice, numberOfSides){
+  let diceRollArray = []
+  let total = 0
 
-window.addEventListener("load", (event) => {
-  console.log('spinach value is ' + spinach);
-});
-window.addEventListener("click", (event) => {
-  console.log('spinach value is ' + spinach);
-});
+  function rollSingleDie(numberOfSides){ 
+    let diceRoll = Math.floor(Math.random() * numberOfSides) + 1
+    return diceRoll      
+  };
 
-window.addEventListener("load", (event) => {
-  console.log('potato value is ' + potato);
-});
-window.addEventListener("load", (event) => {
-  console.log('turnip value is ' + turnip);
-});
-window.addEventListener("load", (event) => {
-  console.log('brocolli value is ' + brocolli);
-});
-function diceRoller(sides) {
-    let diceRoll = Math.floor(Math.random() * sides) + 1;
-      return diceRoll;
-}
+  for (let i = 1; i <= numberOfDice; i++) {
+    let diceRoll = rollSingleDie(numberOfSides);
+    diceRollArray.push(diceRoll)
+  }
   
-  
-//Prints dice roll to the page
+  diceRollArray.forEach(item => {
+        total += item;
+  });
+  return {
+    list: diceRollArray,
+    total: total
+  }   
+};
 
-function printNumber(number) {
+function clickedButton(numberOfSides){
+  let numberOfDice = document.getElementById('numberOfDice').value;
+  
+  function printNumber(number) {
     const para = document.createElement("p");
     const node = document.createTextNode(number);
     para.appendChild(node);
 
     const element = document.getElementById("diceRollResult");
     element.appendChild(para);  
-}
+  };
 
-
-
-
-
-/* //let numberOfDice = document.getElementById('numberOfDice').value;
-   // document.getElementById('button').onclick = console.log(1);
- function rolld6(){ 
-    var numberOfDice = document.getElementById('numberOfDice').value;
-    //document.getElementById('button').onclick = console.log(1);
-    let d6 = document.getElementById('d6');
-    d6.onclick = function() {
-        console.log(numberOfDice)
-        for (let i = 1; i <= numberOfDice; i++) {
-          printNumber(diceRoller(6));
-        }
-    }
-} */
-
-//rolld6()
-
-//Identify how many times to roll the dice
-//Roll the dice
-//Add the rolls together
-//print dice rolls to the page
+  if (numberOfDice < 1){
+    alert("You must enter a number of dice to roll");
+  }
+  else{
+    //console.log("The text input should be working, the number of dice is ", numberOfDice)
+    let diceRoll = rollDice(numberOfDice, numberOfSides)
+    let total = diceRoll.total
+    let diceList = diceRoll.list
+    //console.log("the final total is ", total)
+    //console.log(diceList)
+    
+    printNumber(`you rolled ${numberOfDice}d${numberOfSides} (${diceList}) for a total of ${total}`)
+  };
   
+};
+
+d4Button.addEventListener('click', () => {
+  clickedButton(4)
+}); 
+
+d6Button.addEventListener('click', () => {
+  clickedButton(6)
+}); 
+
+d8Button.addEventListener('click', () => {
+  clickedButton(8)
+}); 
+
+d10Button.addEventListener('click', () => {
+  clickedButton(10)
+}); 
+
+d12Button.addEventListener('click', () => {
+  clickedButton(12)
+}); 
+
+d20Button.addEventListener('click', () => {
+  clickedButton(20)
+}); 
+
+d100Button.addEventListener('click', () => {
+  clickedButton(100)
+}); 

@@ -5,15 +5,13 @@
     <meta http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SW5e Tools</title>
-    <script src="rolldice.js"></script>
-</head>
 <body>
         <div>
         <p>
             Navigation
         </p>
     </div>
-    <div id="diceRollResult"></div>
+    
     <div>
         <h1>
             Star Wars 5e Resources
@@ -21,16 +19,22 @@
         </h1>
         <p>
             <label for="numberOfDice">How many dice to roll?</label>
-            <input type="number" id="numberOfDice" value="1" required>
+            <input id="numberOfDice" value="">
 
         </p>
-       <p>
-            
-            <button id="btn">button</button>
+       <p>                        
+            <button id="rollDice">rollDice</button>
+            <button id="d4">d4</button>
             <button id="d6">d6</button>
+            <button id="d8">d8</button>
+            <button id="d10">d10</button>
+            <button id="d12">d12</button>
+            <button id="d20">d20</button>
+            <button id="d100">d100</button>
             
         </p>
-    </div>
+        <div id="diceRollResult"></div>
+        </div>
     <script defer src="rolldice.js"></script>
     <script src="diceroller.js"></script>
 </body>
